@@ -1,14 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width, initial-scale=1">
     <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <title>{% block title %} {% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <title>Lista de Pendientes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: darkslateblue;
+        }
+
+        #mainDiv {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10%;
+            background-color: white;
+        }
+
+        #appheading {
+            color: darkslateblue;
+        }
+        #item{
+            background-color: black;
+            color: white;
+            text-indent: 20px;
+        }
+    </style>
 </head>
+
 <body>
-    {% block body %} {% endblock %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-12" id="mainDiv">
+                <h1 class="fw-bold my-2 text-center" id="appheading">Lista de Pendientes</h1>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-10">
+                            <input type="text" placeholder="Agregar tarea" class="form-control py-2" id="inputTask">
+                        </div>
+                        <div class="col-2">
+                            <button onclick="addNewTask()" class="btn btn-success py-2 btn-block w-100"><i
+                                    class="bi bi-file-plus"></i>Agregar</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="itemList">
+                    <div class="row" id="item1">
+                        <div class="col-10 py-2">
+                            <p id="item" class="fw-bold">Tarea1</p> 
+                        </div>
+                        <div class="col-2 py-2">
+                            <button class="btn btn-danger btn-block w-100"><i class="bi bi-x fill"></i>Borrar</button>
+                        </div>
+                    </div>
+                </div>
+                
+                    <div class="row">
+                        <div class="col-9">
+                            <p class="text-center py-2">Tienes 0 tareas pendientes</p>
+                        </div>
+                        <div class="col-3">
+                            <button class="btn btn-danger"> <i class="bi bi-x"></i> Limpiar todo </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let list = []
+        id = 0
+        function addNewTask()
+        {
+            taskName = document.getElementById('inputTask').value;
+            if(taskName!=="")
+            {
+                list.push(taskName);
+                id++;
+                content = '';
+                for(let i=0; i<list.length; i++){
+                    content = '<div class="row" id="${i}">';
+                    content += '<div class="col-10 py-2">';
+                    content += '<p id="item" class="fw-bold">${list[i]}</p>'; 
+                    content += '</div>';
+                    content += '<div class="col-2 py-2">';
+                    content += '<button id=${i} class="btn btn-danger btn-block w-100"><i class="bi bi-x fill"></i>Borrar</button>';
+                    content += '</div> </div>';
+                    document.body.appendChild(content);
+                }
+                document.getElementById('itemList').innerHTML = content;
+            }
+        }
+    </script>
 </body>
+
 </html>
 <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
