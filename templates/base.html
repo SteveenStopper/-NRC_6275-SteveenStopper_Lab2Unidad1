@@ -31,9 +31,10 @@
             color: darkslateblue;
         }
         #item{
-            background-color: black;
-            color: white;
+            background-color: lightgray;
+            color: black;
             text-indent: 20px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         }
     </style>
 </head>
@@ -54,6 +55,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div id="itemList">
                     <div class="row" id="item1">
                         <div class="col-10 py-2">
@@ -86,17 +88,16 @@
             if(taskName!=="")
             {
                 list.push(taskName);
-                id++;
                 content = '';
                 for(let i=0; i<list.length; i++){
-                    content = '<div class="row" id="${i}">';
+                    content = `<div class="row" id="${i}">`;
                     content += '<div class="col-10 py-2">';
-                    content += '<p id="item" class="fw-bold">${list[i]}</p>'; 
+                    content += `<p id="item" class="fw-bold">${list[i]}</p>`; 
                     content += '</div>';
                     content += '<div class="col-2 py-2">';
-                    content += '<button id=${i} class="btn btn-danger btn-block w-100"><i class="bi bi-x fill"></i>Borrar</button>';
+                    content += `<button id=${i} class="btn btn-danger btn-block w-100"><i class="bi bi-x fill"></i>Borrar</button>`;
                     content += '</div> </div>';
-                    document.body.appendChild(content);
+                    
                 }
                 document.getElementById('itemList').innerHTML = content;
             }
